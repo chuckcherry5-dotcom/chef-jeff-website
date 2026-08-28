@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef Jeff | Private Chef, Catering &amp; Custom Meal Prep</title>
+<meta name="description" content="Chef Jeff brings restaurant-quality private dinners, event catering, weekly meal prep, and custom menus to your table. Book a chef-crafted dining experience for weddings, birthdays, corporate lunches, and family celebrations.">
+<meta property="og:title" content="Chef Jeff | Chef-Crafted Meals for Moments That Matter">
+<meta property="og:description" content="Private chef experiences, catering, and custom meal prep made fresh with flavor, care, and attention to detail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1b1815;
+    --charcoal-2:#241f1b;
+    --charcoal-3:#2c2621;
+    --cream:#f4ecdd;
+    --cream-2:#efe4cf;
+    --white:#fffdf8;
+    --gold:#c69a53;
+    --gold-light:#e2c081;
+    --rust:#a84a2b;
+    --sage:#6e7c55;
+    --ink:#1b1815;
+    --line:rgba(198,154,83,0.25);
+    --shadow: 0 20px 50px -20px rgba(0,0,0,0.35);
+    --serif: 'Bodoni Moda', serif;
+    --sans: 'Work Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);display:inline-block;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:-0.01em;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:16px 30px;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .btn-gold{background:var(--gold);color:var(--charcoal);border-color:var(--gold);}
+  .btn-gold:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline{background:transparent;color:var(--cream);border-color:rgba(244,236,221,0.4);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline-dark{background:transparent;color:var(--charcoal);border-color:rgba(27,24,21,0.3);}
+  .btn-outline-dark:hover{border-color:var(--rust);color:var(--rust);}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(27,24,21,0.0);
+    padding:22px 0;
+    transition:all .4s ease;
+  }
+  header.scrolled{background:rgba(27,24,21,0.92);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 8px 30px rgba(0,0,0,0.25);}
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:var(--serif);font-size:22px;color:var(--cream);letter-spacing:0.02em;}
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--cream-2);opacity:0.85;transition:opacity .25s, color .25s;position:relative;
+  }
+  .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-cta{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    padding:10px 18px;border:1px solid var(--gold);color:var(--gold);border-radius:2px;transition:all .3s;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--charcoal);}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
+  .nav-toggle span{width:24px;height:2px;background:var(--cream);}
+  .mobile-menu{
+    display:none;position:fixed;inset:0;background:var(--charcoal);z-index:99;
+    flex-direction:column;align-items:center;justify-content:center;gap:28px;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .mobile-menu.open{display:flex;opacity:1;pointer-events:auto;}
+  .mobile-menu a{font-family:var(--serif);font-size:28px;color:var(--cream);}
+  .mobile-menu .nav-cta{margin-top:10px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;align-items:center;
+    background:
+      radial-gradient(ellipse 120% 80% at 80% 10%, rgba(198,154,83,0.14), transparent 60%),
+      linear-gradient(180deg, var(--charcoal) 0%, #171310 100%);
+    overflow:hidden;
+    padding:140px 0 100px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;}
+  .hero-eyebrow{color:var(--gold);}
+  .hero h1{
+    font-size:clamp(38px,5.2vw,66px);
+    color:var(--cream);
+    line-height:1.05;
+    margin:22px 0 24px;
+    max-width:11.5ch;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--gold-light);
+  }
+  .hero p.sub{
+    color:rgba(244,236,221,0.75);
+    font-size:18px;
+    max-width:46ch;
+    margin-bottom:38px;
+    font-weight:300;
+  }
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:
+      repeating-linear-gradient(135deg, #2a231d, #2a231d 2px, #241e19 2px, #241e19 4px);
+  }
+  .hero-visual .ph-label{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+    color:rgba(244,236,221,0.55);text-align:center;padding:30px;
+  }
+  .hero-visual .ph-label .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-light);
+    border:1px dashed rgba(198,154,83,0.5);padding:6px 12px;border-radius:2px;
+  }
+  .hero-visual::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(27,24,21,0.5), transparent 40%);
+  }
+  .steam-line{
+    position:absolute;
+    left:-40px;bottom:-20px;
+    width:220px;height:220px;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  .steam-line path{
+    stroke:var(--gold);
+    stroke-width:1;
+    fill:none;
+    stroke-dasharray:400;
+    stroke-dashoffset:400;
+    animation:draw 2.6s 0.4s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .scroll-cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    color:rgba(244,236,221,0.5);font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  }
+  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(180deg, var(--gold), transparent);animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.2s;}
+  .reveal-delay-3{transition-delay:.3s;}
+
+  section{padding:110px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:16px;}
+  .section-head p{color:rgba(27,24,21,0.65);margin-top:14px;font-size:17px;font-weight:300;}
+  .section-head.on-dark p{color:rgba(244,236,221,0.7);}
+  .section-head.on-dark h2{color:var(--cream);}
+
+  /* ABOUT */
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;}
+  .about-photo{
+    aspect-ratio:3/4;border-radius:4px;overflow:hidden;position:relative;
+    background:repeating-linear-gradient(135deg,#e9dcc3,#e9dcc3 2px,#efe4cf 2px,#efe4cf 4px);
+    border:1px solid rgba(27,24,21,0.08);
+  }
+  .about-photo .ph-label{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+    color:rgba(27,24,21,0.45);text-align:center;padding:20px;
+  }
+  .about-photo .ph-label .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--rust);
+    border:1px dashed rgba(168,74,43,0.4);padding:6px 12px;border-radius:2px;
+  }
+  .about-copy h2{font-size:clamp(30px,3.6vw,42px);margin-bottom:22px;}
+  .about-copy p{color:rgba(27,24,21,0.72);margin-bottom:18px;font-size:17px;font-weight:300;}
+  .about-copy p strong{color:var(--ink);font-weight:600;}
+  .about-stats{display:flex;gap:36px;margin-top:32px;flex-wrap:wrap;}
+  .about-stats div{border-left:2px solid var(--gold);padding-left:14px;}
+  .about-stats .num{font-family:var(--serif);font-size:28px;color:var(--rust);}
+  .about-stats .lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(27,24,21,0.55);}
+
+  /* SERVICES */
+  .services{background:var(--cream);}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .service-card{
+    background:var(--white);
+    border:1px solid rgba(27,24,21,0.08);
+    border-radius:4px;
+    padding:38px 30px;
+    position:relative;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, border-color .4s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold);}
+  .service-card .num{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:0.1em;}
+  .service-card h3{font-size:23px;margin:16px 0 12px;}
+  .service-card p{color:rgba(27,24,21,0.62);font-size:15px;font-weight:300;margin-bottom:22px;min-height:66px;}
+  .service-card a.req{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--rust);display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid transparent;transition:border-color .3s;
+  }
+  .service-card a.req:hover{border-color:var(--rust);}
+
+  /* MENU */
+  .menu-section{
+    background:var(--charcoal);
+    position:relative;
+  }
+  .menu-section::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .menu-tabs{
+    display:flex;gap:6px;flex-wrap:wrap;margin-bottom:44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:0;
+  }
+  .menu-tab{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    color:rgba(244,236,221,0.55);
+    background:none;border:none;cursor:pointer;
+    padding:14px 18px;position:relative;transition:color .3s;
+  }
+  .menu-tab::after{
+    content:"";position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--gold);
+    transform:scaleX(0);transition:transform .3s ease;transform-origin:left;
+  }
+  .menu-tab.active{color:var(--gold-light);}
+  .menu-tab.active::after{transform:scaleX(1);}
+  .menu-panel{display:none;}
+  .menu-panel.active{display:block;animation:fadein .5s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;}
+  .dish{
+    display:flex;align-items:baseline;gap:10px;
+    padding:16px 0;
+    border-bottom:1px dotted rgba(244,236,221,0.18);
+  }
+  .dish .name{
+    font-family:var(--serif);font-size:19px;color:var(--cream);font-weight:500;flex-shrink:0;
+  }
+  .dish .fill{flex:1;border-bottom:1px dotted rgba(198,154,83,0.35);margin-bottom:5px;}
+  .dish .tag{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;}
+  .menu-note{
+    margin-top:36px;padding:20px 24px;border:1px solid var(--line);border-radius:2px;
+    color:rgba(244,236,221,0.65);font-size:14px;font-weight:300;
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .menu-note .ic{color:var(--gold);font-family:var(--serif);font-size:20px;line-height:1;}
+
+  /* WHY BOOK */
+  .why{background:var(--cream-2);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .why-card{text-align:left;padding:6px;}
+  .why-card .icon{
+    width:52px;height:52px;border-radius:50%;background:var(--charcoal);color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;margin-bottom:20px;
+  }
+  .why-card h4{font-size:19px;margin-bottom:10px;}
+  .why-card p{color:rgba(27,24,21,0.62);font-size:14.5px;font-weight:300;}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--white);}
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .test-card{
+    background:var(--cream);border-radius:4px;padding:34px 30px;position:relative;border:1px solid rgba(27,24,21,0.06);
+  }
+  .test-card .quote-mark{font-family:var(--serif);font-size:52px;color:var(--gold);line-height:0.4;position:absolute;top:28px;right:26px;opacity:0.6;}
+  .test-card p{font-size:15.5px;color:rgba(27,24,21,0.75);margin-bottom:22px;font-weight:300;font-style:italic;}
+  .test-card .who{display:flex;align-items:center;gap:12px;}
+  .test-card .avatar{
+    width:42px;height:42px;border-radius:50%;background:var(--charcoal);color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px;
+  }
+  .test-card .name{font-weight:600;font-size:14.5px;}
+  .test-card .role{font-family:var(--mono);font-size:11px;color:rgba(27,24,21,0.5);letter-spacing:0.04em;text-transform:uppercase;}
+  .stars{color:var(--gold);font-size:13px;margin-bottom:14px;letter-spacing:2px;}
+
+  /* BOOKING FORM */
+  .booking{background:var(--charcoal);position:relative;}
+  .booking::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+  .booking-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;}
+  .booking-info h2{color:var(--cream);font-size:clamp(28px,3.6vw,40px);margin:16px 0 20px;}
+  .booking-info p{color:rgba(244,236,221,0.65);font-size:16px;font-weight:300;margin-bottom:30px;max-width:38ch;}
+  .booking-contact{display:flex;flex-direction:column;gap:18px;margin-top:10px;}
+  .booking-contact .item{display:flex;gap:14px;align-items:center;}
+  .booking-contact .ic{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--serif);font-size:15px;flex-shrink:0;
+  }
+  .booking-contact .lbl{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(244,236,221,0.45);}
+  .booking-contact .val{color:var(--cream);font-size:15px;}
+
+  .form-card{background:var(--charcoal-2);border:1px solid var(--line);border-radius:6px;padding:40px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .form-group{display:flex;flex-direction:column;gap:8px;}
+  .form-group.full{grid-column:1/-1;}
+  label{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(244,236,221,0.6);}
+  input,select,textarea{
+    background:var(--charcoal);
+    border:1px solid rgba(244,236,221,0.15);
+    border-radius:2px;
+    padding:13px 14px;
+    color:var(--cream);
+    font-family:var(--sans);
+    font-size:14.5px;
+    transition:border-color .3s;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(244,236,221,0.3);}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
+  select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23c69a53"/></svg>');background-repeat:no-repeat;background-position:right 14px center;}
+  textarea{resize:vertical;min-height:100px;font-family:var(--sans);}
+  .form-submit{width:100%;margin-top:6px;border:none;}
+  .form-success{
+    display:none;
+    background:rgba(198,154,83,0.1);border:1px solid var(--gold);border-radius:4px;
+    padding:22px;text-align:center;color:var(--gold-light);font-family:var(--mono);font-size:13px;letter-spacing:0.04em;
+    margin-top:18px;
+  }
+  .form-success.show{display:block;animation:fadein .5s ease;}
+
+  /* FOOTER */
+  footer{background:#141110;padding:70px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;margin-bottom:56px;}
+  .footer-logo{font-family:var(--serif);font-size:24px;color:var(--cream);margin-bottom:14px;}
+  .footer-logo span{color:var(--gold);}
+  footer .tagline{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  footer .desc{color:rgba(244,236,221,0.5);font-size:14px;font-weight:300;max-width:34ch;}
+  .footer-col h5{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,236,221,0.4);margin-bottom:18px;}
+  .footer-col a{display:block;color:rgba(244,236,221,0.7);font-size:14.5px;margin-bottom:12px;transition:color .25s;}
+  .footer-col a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    border-top:1px solid rgba(244,236,221,0.08);padding-top:26px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  }
+  .footer-bottom p{color:rgba(244,236,221,0.4);font-size:13px;font-family:var(--mono);}
+
+  /* RESPONSIVE */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{max-width:480px;margin:0 auto;order:-1;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{max-width:420px;margin:0 auto;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .booking-grid{grid-template-columns:1fr;}
+    .menu-cols{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+    .wrap{padding:0 22px;}
+    section{padding:76px 0;}
+    .service-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:36px;}
+    .hero{padding:120px 0 70px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">Chef <span>Jeff</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#menu">Menu</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#booking" class="nav-cta">Book Chef Jeff</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#menu">Menu</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="#booking" class="nav-cta">Book Chef Jeff</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal in">Private Chef &amp; Catering</div>
+        <h1 class="reveal in reveal-delay-1">Chef-Crafted Meals for <em>Moments That Matter</em></h1>
+        <p class="sub reveal in reveal-delay-2">Private chef experiences, catering, and custom meal prep made fresh with flavor, care, and attention to detail.</p>
+        <div class="hero-btns reveal in reveal-delay-3">
+          <a href="#booking" class="btn btn-gold">Book Chef Jeff</a>
+          <a href="#menu" class="btn btn-outline">View Sample Menu</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal in reveal-delay-2">
+        <img src="images/chef-jeff-kitchen.jpg" alt="Chef Jeff in the kitchen" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+        <svg class="steam-line" viewBox="0 0 220 220" fill="none">
+          <path d="M10 210 C 60 170, 20 130, 70 100 C 120 70, 80 40, 130 10" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal">
+      <img src="images/chef-jeff-portrait.jpg" alt="Portrait of Chef Jeff" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="about-copy reveal reveal-delay-1">
+      <div class="eyebrow">About Chef Jeff</div>
+      <h2>Cooking that feels like home, plated like it means it</h2>
+      <p>Chef Jeff has built a reputation on one simple idea: great food brings people together. From intimate date nights to full-scale event catering, every dish is prepared fresh, from scratch, with the kind of care that only comes from genuinely loving the craft.</p>
+      <p><strong>Comfort food, elevated.</strong> Chef Jeff's menu blends Southern, Cajun, and classic American cooking — bold seasoning, slow-braised flavor, and made-to-order freshness — tailored to your table, your guests, and your occasion.</p>
+      <p>Whether it's a birthday dinner for two or a full weekend of family meal prep, Chef Jeff handles the shopping, the prep, the cooking, and the cleanup — so you get to enjoy the meal, not the mess.</p>
+      <div class="about-stats">
+        <div><div class="num">100%</div><div class="lbl">Made From Scratch</div></div>
+        <div><div class="num">Custom</div><div class="lbl">Every Menu</div></div>
+        <div><div class="num">Full</div><div class="lbl">Setup &amp; Cleanup</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Services</div>
+      <h2>Chef-crafted for every occasion</h2>
+      <p>From weeknight meal prep to full event catering, Chef Jeff tailors every menu to fit the moment.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="num">01</div>
+        <h3>Private Dinners</h3>
+        <p>An in-home dining experience for date nights, anniversaries, or a special evening in — restaurant-quality, no reservation required.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="num">02</div>
+        <h3>Event Catering</h3>
+        <p>Full-service catering for weddings, birthdays, and gatherings of any size, with a menu built around your guest list.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="num">03</div>
+        <h3>Weekly Meal Prep</h3>
+        <p>Fresh, portioned meals prepared in your kitchen or delivered ready to heat — a week of good food without the work.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="num">04</div>
+        <h3>Corporate Lunches</h3>
+        <p>Elevated lunch service for offices, meetings, and team events — professional, punctual, and genuinely good food.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="num">05</div>
+        <h3>Family Celebrations</h3>
+        <p>Holidays, reunions, and milestone celebrations — Chef Jeff brings the full spread so you can stay present with family.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="num">06</div>
+        <h3>Custom Menus</h3>
+        <p>Have something specific in mind? Every menu on this site can be customized, and special requests are always welcome.</p>
+        <a href="#booking" class="req">Request This Service →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="wrap">
+    <div class="section-head on-dark reveal">
+      <div class="eyebrow">Sample Menu</div>
+      <h2>A taste of what's on the table</h2>
+      <p>Every menu is fully customizable — this is a sample of Chef Jeff's most requested dishes. Discuss any special requests directly with the chef before booking.</p>
+    </div>
+
+    <div class="menu-tabs" role="tablist">
+      <button class="menu-tab active" data-tab="appetizers">Appetizers</button>
+      <button class="menu-tab" data-tab="mains">Main Courses</button>
+      <button class="menu-tab" data-tab="sides">Sides</button>
+      <button class="menu-tab" data-tab="soups">Soups &amp; Bread</button>
+      <button class="menu-tab" data-tab="dessert">Desserts</button>
+      <button class="menu-tab" data-tab="mealprep">Meal Prep Favorites</button>
+    </div>
+
+    <div class="menu-panel active" id="panel-appetizers">
+      <div class="menu-cols">
+        <div>
+          <div class="dish"><span class="name">Wings</span><span class="fill"></span><span class="tag">Chef's Sauce</span></div>
+          <div class="dish"><span class="name">Charcuterie Board</span><span class="fill"></span><span class="tag">Shareable</span></div>
+          <div class="dish"><span class="name">Crispy Cheese Potatoes</span><span class="fill"></span><span class="tag">Fan Favorite</span></div>
+          <div class="dish"><span class="name">Sliders</span><span class="fill"></span><span class="tag">Made to Order</span></div>
+        </div>
+        <div>
+          <div class="dish"><span class="name">Shrimp</span><span class="fill"></span><span class="tag">Blackened or Fried</span></div>
+          <div class="dish"><span class="name">Cowboy Butter Steak Bites</span><span class="fill"></span><span class="tag">Signature</span></div>
+          <div class="dish"><span class="name">Pork Belly Bites</span><span class="fill"></span><span class="tag">Rich &amp; Savory</span></div>
+          <div class="dish"><span class="name">Cheese Quesadilla</span><span class="fill"></span><span class="tag">Kid Friendly</span></div>
+          <div class="dish"><span class="name">Chips w/ Salsa or Cheese Sauce</span><span class="fill"></span><span class="tag">Starter</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-mains">
+      <div class="menu-cols">
+        <div>
+          <div class="dish"><span class="name">Capatavi Pasta Bake</span><span class="fill"></span><span class="tag">Red Meat Sauce</span></div>
+          <div class="dish"><span class="name">White Sauce Pasta</span><span class="fill"></span><span class="tag">Spinach, Shrimp, Chicken or Sausage</span></div>
+          <div class="dish"><span class="name">BBQ Chicken</span><span class="fill"></span><span class="tag">Classic</span></div>
+          <div class="dish"><span class="name">Roasted Chicken</span><span class="fill"></span><span class="tag">Herb &amp; Garlic</span></div>
+          <div class="dish"><span class="name">Ribs</span><span class="fill"></span><span class="tag">BBQ, Jerk BBQ, or Chef Jeff Style</span></div>
+        </div>
+        <div>
+          <div class="dish"><span class="name">Pot Roast</span><span class="fill"></span><span class="tag">Slow Braised</span></div>
+          <div class="dish"><span class="name">Pork Steak</span><span class="fill"></span><span class="tag">Southern Style</span></div>
+          <div class="dish"><span class="name">Salmon</span><span class="fill"></span><span class="tag">Chef's Preparation</span></div>
+          <div class="dish"><span class="name">Catfish Fillets</span><span class="fill"></span><span class="tag">Or Fish of Choice</span></div>
+          <div class="dish"><span class="name">Steak</span><span class="fill"></span><span class="tag">Cooked to Order</span></div>
+          <div class="dish"><span class="name">Turkey</span><span class="fill"></span><span class="tag">Holiday Favorite</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-sides">
+      <div class="menu-cols">
+        <div>
+          <div class="dish"><span class="name">Collard Greens</span><span class="fill"></span><span class="tag">w/ Smoked Turkey</span></div>
+          <div class="dish"><span class="name">Macaroni &amp; Cheese</span><span class="fill"></span><span class="tag">House Made</span></div>
+          <div class="dish"><span class="name">Cajun Green Beans</span><span class="fill"></span><span class="tag">With or Without Smoked Turkey</span></div>
+          <div class="dish"><span class="name">Sautéed Green Beans</span><span class="fill"></span><span class="tag">Simple &amp; Fresh</span></div>
+          <div class="dish"><span class="name">Sautéed or Creamed Spinach</span><span class="fill"></span><span class="tag">Choice of Style</span></div>
+          <div class="dish"><span class="name">Jerk BBQ Baked Beans</span><span class="fill"></span><span class="tag">w/ Ground Turkey</span></div>
+        </div>
+        <div>
+          <div class="dish"><span class="name">White Rice</span><span class="fill"></span><span class="tag">Staple</span></div>
+          <div class="dish"><span class="name">Broccoli</span><span class="fill"></span><span class="tag">Steamed</span></div>
+          <div class="dish"><span class="name">Caesar Salad</span><span class="fill"></span><span class="tag">Classic</span></div>
+          <div class="dish"><span class="name">Garden Salad</span><span class="fill"></span><span class="tag">Fresh</span></div>
+          <div class="dish"><span class="name">Cucumber Salad</span><span class="fill"></span><span class="tag">Light &amp; Crisp</span></div>
+          <div class="dish"><span class="name">Mashed Potatoes</span><span class="fill"></span><span class="tag">Creamy</span></div>
+          <div class="dish"><span class="name">Sweet Potato Mash</span><span class="fill"></span><span class="tag">Comfort Classic</span></div>
+          <div class="dish"><span class="name">Spaghetti</span><span class="fill"></span><span class="tag">Simple Side</span></div>
+          <div class="dish"><span class="name">Corn or Creamed Corn</span><span class="fill"></span><span class="tag">Choice of Style</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-soups">
+      <div class="menu-cols">
+        <div>
+          <div class="eyebrow" style="margin-bottom:16px;">Soups</div>
+          <div class="dish"><span class="name">Fifteen Bean Soup</span><span class="fill"></span><span class="tag">Hearty</span></div>
+          <div class="dish"><span class="name">Creamy Chicken &amp; Sausage Soup</span><span class="fill"></span><span class="tag">Rich &amp; Savory</span></div>
+          <div class="dish"><span class="name">Cajun Chicken Noodle Soup</span><span class="fill"></span><span class="tag">Spiced Comfort</span></div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:16px;">Bread</div>
+          <div class="dish"><span class="name">Cornbread</span><span class="fill"></span><span class="tag">Southern Style</span></div>
+          <div class="dish"><span class="name">Garlic Bread</span><span class="fill"></span><span class="tag">House Made</span></div>
+          <div class="dish"><span class="name">Rolls</span><span class="fill"></span><span class="tag">Warm &amp; Buttered</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-dessert">
+      <div class="menu-cols">
+        <div>
+          <div class="dish"><span class="name">Chef Jeff Cobbler</span><span class="fill"></span><span class="tag">Signature</span></div>
+          <div class="dish"><span class="name">Assorted Cookies</span><span class="fill"></span><span class="tag">Baked Fresh</span></div>
+        </div>
+        <div>
+          <div class="dish"><span class="name">Cakes or Pies</span><span class="fill"></span><span class="tag">Made to Order</span></div>
+          <div class="dish"><span class="name">Seasonal Dessert Boards</span><span class="fill"></span><span class="tag">Shareable</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-mealprep">
+      <div class="menu-cols">
+        <div>
+          <div class="dish"><span class="name">Honey Glazed Chicken</span><span class="fill"></span><span class="tag">Weekly Favorite</span></div>
+          <div class="dish"><span class="name">Braised Short Ribs</span><span class="fill"></span><span class="tag">Prep &amp; Reheat</span></div>
+          <div class="dish"><span class="name">Cajun Shrimp Pasta</span><span class="fill"></span><span class="tag">Portioned</span></div>
+        </div>
+        <div>
+          <div class="dish"><span class="name">Garlic Herb Salmon</span><span class="fill"></span><span class="tag">Portioned</span></div>
+          <div class="dish"><span class="name">Smoked Gouda Mac &amp; Cheese</span><span class="fill"></span><span class="tag">Batch Made</span></div>
+          <div class="dish"><span class="name">Roasted Seasonal Vegetables</span><span class="fill"></span><span class="tag">Meal Prep Side</span></div>
+          <div class="dish"><span class="name">Banana Pudding Cups</span><span class="fill"></span><span class="tag">Grab &amp; Go</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-note reveal">
+      <span class="ic">＊</span>
+      <span>Also taking special requests for items not listed on the menu. Please discuss your requests with Chef Jeff prior to booking.</span>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Book Chef Jeff</div>
+      <h2>Good food, zero stress</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="icon">01</div>
+        <h4>Custom Menus</h4>
+        <p>Every menu is built around your event, your guests, and your taste — nothing is one-size-fits-all.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="icon">02</div>
+        <h4>Fresh Ingredients</h4>
+        <p>Everything is prepared from scratch with fresh ingredients — no shortcuts, no premade sides.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="icon">03</div>
+        <h4>Professional Setup</h4>
+        <p>From presentation to plating, every detail is handled with a professional, polished touch.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="icon">04</div>
+        <h4>Stress-Free Dining</h4>
+        <p>Chef Jeff handles the shopping, cooking, and cleanup — you just show up and enjoy the meal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Testimonials</div>
+      <h2>What clients are saying</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p>Chef Jeff catered our anniversary dinner and it felt like a five-star restaurant in our own dining room. Every course was perfectly seasoned and beautifully plated.</p>
+        <div class="who">
+          <div class="avatar">A</div>
+          <div>
+            <div class="name">Amanda R.</div>
+            <div class="role">Private Dinner Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-1">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p>We hired Chef Jeff for a 40-person birthday celebration and he handled everything — menu, setup, service. Guests are still talking about the ribs and the mac and cheese.</p>
+        <div class="who">
+          <div class="avatar">M</div>
+          <div>
+            <div class="name">Marcus T.</div>
+            <div class="role">Event Catering Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal reveal-delay-2">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p>The weekly meal prep has been a game changer for our family. The food is fresh, flavorful, and never feels like leftovers. Professional and easy to work with every time.</p>
+        <div class="who">
+          <div class="avatar">S</div>
+          <div>
+            <div class="name">Sherise K.</div>
+            <div class="role">Weekly Meal Prep Client</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap booking-grid">
+    <div class="booking-info reveal">
+      <div class="eyebrow">Booking</div>
+      <h2>Let's plan your next meal</h2>
+      <p>Tell Chef Jeff about your event and get a custom menu built around your date, guest count, and budget.</p>
+      <div class="booking-contact" id="contact">
+        <div class="item">
+          <div class="ic">☎</div>
+          <div><div class="lbl">Phone</div><div class="val">314-625-4434</div></div>
+        </div>
+        <div class="item">
+          <div class="ic">✉</div>
+          <div><div class="lbl">Email</div><div class="val">chefjeffdining@gmail.com</div></div>
+        </div>
+        <div class="item">
+          <div class="ic">◎</div>
+          <div><div class="lbl">Instagram</div><div class="val">[ADD INSTAGRAM]</div></div>
+        </div>
+        <div class="item">
+          <div class="ic">⚑</div>
+          <div><div class="lbl">Service Area</div><div class="val">[ADD CITY / REGION]</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal reveal-delay-1">
+      <form id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" placeholder="you@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fphone">Phone</label>
+            <input type="tel" id="fphone" placeholder="(555) 555-5555" required>
+          </div>
+          <div class="form-group">
+            <label for="fdate">Event Date</label>
+            <input type="date" id="fdate" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ftype">Event Type</label>
+            <select id="ftype" required>
+              <option value="" disabled selected>Select event type</option>
+              <option>Private Dinner</option>
+              <option>Wedding</option>
+              <option>Birthday</option>
+              <option>Corporate Lunch</option>
+              <option>Family Celebration</option>
+              <option>Weekly Meal Prep</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fguests">Number of Guests</label>
+            <input type="number" id="fguests" placeholder="e.g. 8" min="1" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="flocation">Location</label>
+            <input type="text" id="flocation" placeholder="City / venue" required>
+          </div>
+          <div class="form-group">
+            <label for="fbudget">Budget Range</label>
+            <select id="fbudget">
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $500</option>
+              <option>$500 – $1,000</option>
+              <option>$1,000 – $2,500</option>
+              <option>$2,500+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="fmessage">Message / Details</label>
+            <textarea id="fmessage" placeholder="Tell Chef Jeff about your event, menu preferences, or special requests..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold form-submit">Send Booking Request</button>
+        <div class="form-success" id="formSuccess">✓ Thank you! Your booking request has been sent. Chef Jeff will reach out shortly to confirm the details.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Chef <span>Jeff</span></div>
+        <div class="tagline">Private Chef &amp; Catering</div>
+        <p class="desc">Chef-crafted meals for private dinners, catering, and custom meal prep — made fresh, made personal.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#menu">Sample Menu</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#booking">Book Now</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:13146254434">314-625-4434</a>
+        <a href="mailto:chefjeffdining@gmail.com">chefjeffdining@gmail.com</a>
+        <a href="#">[ADD INSTAGRAM]</a>
+        <a href="#">[ADD CITY / REGION]</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Chef Jeff. All rights reserved.</p>
+      <p>Private Chef &amp; Catering</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Menu tabs
+  const tabs = document.querySelectorAll('.menu-tab');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Booking form
+  const form = document.getElementById('bookingForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+    success.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
